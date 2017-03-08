@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        function checkForm() {
+            var firstName = document.form1.firstName.value;
+            if (firstName === "" || firstName === null) {
+                alert("Sorry, first name field must be filled in");
+                return false;
+            }
+            var lastName = document.form1.lastName.value;
+
+            if (lastName === "" || lastName === null) {
+                alert("Sorry, last name field must be filled in");
+                return false;
+            }
+            var x = document.form1.email.value;
+            var atpos = x.indexOf("@");
+            var dotpos = x.lastIndexOf(".");
+            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+                alert("Not a valid e-mail address");
+                return false;
+            }
+
+
+            var password = document.form1.password.value;
+            if (password === "" || password === null) {
+                alert("Please enter password");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Error: Password must contain at least six characters!");
+                return false;
+            }
+
+            re = /[a-z]/;
+            if (!re.test(password)) {
+                alert("Error: password must contain at least one lowercase letter (a-z)!");
+                return false;
+            }
+            re = /[A-Z]/;
+            if (!re.test(password)) {
+                alert("Error: password must contain at least one uppercase letter (A-Z)!");
+                return false;
+            }
+            re = /[0-9]/;
+            if (!re.test(password)) {
+                alert("Error: password must contain at least one number (0-9)!");
+                return false;
+            }
+            var passChk = document.form1.passChk.value;
+            if (passChk === "" || passChk === null || passChk !== password) {
+                alert("Passwords do not match, please try again");
+                return false;
+            }
+            var phoneNum = document.form1.phoneNum.value;
+            if ((phoneNum === "" || phoneNum === null)) {
+                alert("Sorry, phone field must be filled in");
+                return false;
+            }
+            var location = document.form1.location.value;
+            if (location === "" || location === null) {
+                alert("Please choose a location");
+                return false;
+            }
+            var sLevel = document.form1.sLevel.value;
+            if (sLevel === "" || sLevel === null) {
+                alert("Please choose a skill level");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+
+</head>
+<body>
+<h1>Learn a Martial Art</h1>
+<form name="form1" action="addCustomer.jsp" method="post">
+    <br>Enter last 4 SSN digits:</br>
+    <input type="text" name="CustomerID" maxlength="4" size="4"><br>
+    <br>First Name:</br>
+    <input type="text" name="firstName" align="top"><br>
+    <br>Last Name:</br>
+    <input type="text" name="lastName"><br>
+    <br> email:</br>
+    <input type="text" name="email"><br>
+    <br> Phone Number:
+    <a>(ex. 1234567890)</a> </br>
+    <input type="tel" maxlength="10"
+                                   size="10" name="phoneNum"><br>
+    <br>Create Password: <a>(Passwords must contain at least six characters, including uppercase,
+    lowercase letters and numbers)</a></br>
+    <input type="password" name="password"><br>
+    <br>Re-Enter Password: </br>
+    <input type="password" name="passChk"><br>
+    <select name="location" id="location">
+
+        <option value="">Choose a Location</option>
+        <option value="Judo">Kodokan (Judo)</option>
+        <option value="Aikido">Aikikai Hombu Dōjō (Aikido)</option>
+        <option value="Kendo">Noma dojo (Kendo)</option>
+        <option value="Shorin-Ryu Shorinkan">Nakazato Karate Weapons Gym (Shorin-Ryu Shorinkan)</option>
+    </select>
+
+    <select name="sLevel" id="sLevel">
+        <option value="">Choose a Skill Level</option>
+
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+    </select>
+
+    <button type="submit" onclick="return checkForm()">Start Learning Now</button>
+
+</form>
+</body>
+</html>
